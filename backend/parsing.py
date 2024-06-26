@@ -6,7 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 name = str(input("What you're searching for: "))
-url = "https://hh.ru/search/vacancy?text={name}"
+url = f"https://hh.ru/search/vacancy?text={name}"
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
@@ -19,6 +19,6 @@ headings = soup.find_all(name='span', attrs={'class': "vacancy-name--c1Lay3KouCl
 for heading in headings:
     print(heading.getText())
 
-time.sleep(500)
+time.sleep(10)
 
 driver.quit()
