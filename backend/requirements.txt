@@ -1,0 +1,7 @@
+pydantic
+sqlalchemy
+selenium
+beautifulsoup4
+lxml
+webdriver-manager
+fastapi

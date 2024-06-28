@@ -1,5 +1,3 @@
-from venv import create
-from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -17,4 +15,12 @@ class VacancyOrm(Model):
     vacancy_salary: Mapped[str]
     vacancy_expiriens: Mapped[str]
     vacancy_place: Mapped[str]
-    vacancy_link
+    vacancy_link: Mapped[str]
+
+async def create_tables():
+    async with engine.begin() as conn:
+        await conn.run_sync(Model.metadata.drop_all)
+
+async def delete_tables():
+    async with engine.begin() as conn:
+        await conn.run_sync(Model.metadata.drop_all)
