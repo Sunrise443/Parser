@@ -18,22 +18,27 @@
         <div class="SearchBar">
             <div class="SearchTool">
                 <h1>Введите название вакансии</h1>
+                <input type="text" class="VacName">
             </div>
-            <div class="FilterButtons">
+            <div>
                 <h1>Выберите интересующие параметры</h1>
-                <div class="Filter">
-                    <h2>Chooooose buttons</h2>
-                </div>
-                <div class="Filter">
-                    <h2>Chooooose buttons</h2>
-                </div>
-                <div class="Filter">
-                    <h2>Chooooose buttons</h2>
+                <div class="FilterButtons">
+                    <div class="Filter">
+                        <label for="salary">Желаемая зарплата</label>
+                        <input type="text" id="salary" class="VacOptions">
+                    </div>
+                    <div class="Filter">
+                        <label for="expirience">Опыт работы</label>
+                        <select name="expirience" id="expirience" class="VacOptions">
+                            <option value="noExperience">Нет опыта</option>
+                            <option value="between1And3">От 1 года до 3 лет</option>
+                            <option value="between3And6">От 3 до 6 лет</option>
+                            <option value="moreThan6">Более 6 лет</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="ProceedButton">
-                <h1>Искать</h1>
-            </div>
+            <input type="submit" value="Найти" class="ProceedButton">
         </div>
         <div class="LowerLine">
             <h1>По всем вопросам обращаться:</h1>

@@ -6,6 +6,11 @@ body {
     color: olivedrab;
 }
 
+.button {
+    border: none;
+    color: aquamarine;
+}
+
 .container {
     width: 1500px;
 }
@@ -38,14 +43,28 @@ body {
     margin-right: 10px;
 }
 
+.VacName {
+    border-radius: 5px;
+    width: 300px;
+    padding: 10px;
+}
+
+.VacOptions {
+    border-radius: 5px;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+}
+
 .FilterButtons{
     background-color: bisque;
     margin-left: 10px;
     float: right;
+    display: flex;
 }
 
 .Filter {
-    background-color: burlywood;
+
 }
 
 .ProceedButton {
