@@ -1,13 +1,12 @@
-from pydantic import BaseModel, ConfigDict, Field
+from database import Base
+from sqlalchemy.orm import Mapped, mapped_column
 
-class VacancySchemaAdd(BaseModel):
-    vacancy_name: str
-    vacancy_salary: str
-    vacancy_expiriens: str
-    vacancy_place: str
-    vacancy_link: str
+class Vacancy(Base):
+    __tablename__ = "Vacancies"
 
-class VacancySchema(VacancySchemaAdd):
-    id: int
-
-    model_config = ConfigDict(from_attributes=True)
+    id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    name: Mapped[str]
+    salary: Mapped[int]
+    experience: Mapped[str]
+    city: Mapped[str]
+    link: Mapped[str]

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>parser hh.ru</title>
     <link rel="stylesheet" href="/styles/index.css" type="text/css">
+    <script src="/scripts/main.js"></script>
 </head>
 
 
@@ -18,9 +19,9 @@
         <div class="SearchBar">
             <div class="SearchTool">
                 <h1>Введите название вакансии</h1>
-                <input type="text" class="VacName">
+                <input type="text" id="name" class="VacName">
             </div>
-            <div>
+            <div id="search">
                 <h1>Выберите интересующие параметры</h1>
                 <div class="FilterButtons">
                     <div class="Filter">
@@ -38,7 +39,9 @@
                     </div>
                 </div>
             </div>
-            <input type="submit" value="Найти" class="ProceedButton">
+            <a href="/pages/vacancies.html">
+                <input type="submit" value="Найти" class="ProceedButton">
+            </a>
         </div>
         <div class="LowerLine">
             <h1>По всем вопросам обращаться:</h1>
