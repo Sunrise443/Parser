@@ -24,7 +24,7 @@ def get_vacancies(vac_name, vac_salary):
         vacancy_experience = vacancy.find(name='span', attrs={'class':'label--rWRLMsbliNlu_OMkM_D3 label_light-gray--naceJW1Byb6XTGCkZtUM'}).getText()
         vacancy_city = vacancy.find(name='span', attrs={'data-qa':"vacancy-serp__vacancy-address", 'class':'bloko-text'}).getText()
         vacancy_link = vacancy.find(name='a', attrs={'class':'bloko-link'}).get('href')
-        all_vacancies.append([vacancy_name, vacancy_experience, vacancy_city, vacancy_link])
+        all_vacancies.append([vacancy_name, vac_salary, vacancy_experience, vacancy_city, vacancy_link])
 
     time.sleep(10)
     driver.quit()

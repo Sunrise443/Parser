@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from database import SessionLocal, engine
 import models as models
+from parsing import get_vacancies
 
 app = FastAPI()
 
@@ -42,13 +43,15 @@ db_dependency = Annotated[Session, Depends(get_db)]
 
 models.Base.metadata.create_all(bind=engine)
 
+
 @app.post("/vacancies/", response_model=VacancyModel)
-async def create_vacancy(vacancy: VacancyBase, db: db_dependency):
+async def parse_vacancies(vacancy: VacancyBase, db: db_dependency):
     db_vacancy = models.Vacancy(**vacancy.dict())
     db.add(db_vacancy)
     db.commit()
     db.refresh(db_vacancy)
     return db_vacancy
+
 
 
 @app.get("/vacancies/", response_model=List[VacancyModel])

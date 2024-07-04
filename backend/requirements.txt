@@ -6,3 +6,4 @@ lxml
 webdriver-manager
 fastapi
 uvicorn
+axios
