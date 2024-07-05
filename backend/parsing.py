@@ -7,7 +7,7 @@ import time
 def get_vacancies(vac_name, vac_salary):
     vac_experience = "between1And3"
 
-    url = f"https://hh.ru/search/vacancy?text={vac_name}&salary={vac_salary}&experience={vac_experience}&items_on_page=50"
+    url = f"https://hh.ru/search/vacancy?text={vac_name}&salary={vac_salary}&experience={vac_experience}&items_on_page=50&"
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
