@@ -1,16 +1,10 @@
 import { Breadcrumb, Layout, Menu, Card, theme } from 'antd';
 const { Header, Content, Footer, Sider} = Layout;
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
-
-
 
 import SearchBar from "./components/SearchBar.jsx"
 import VacanciesCard from "./components/VacanciesCard.jsx"
 import FilterCard from './components/FilterCard.jsx';
+
 
 function App() {
 
@@ -56,6 +50,13 @@ function App() {
           </div>
         </Content>
       </div>
+      <Footer
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        Study project ©2024 Created by Sunny
+      </Footer>
     </div>
   )
 }

@@ -39,8 +39,8 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 
 @router.post("", tags=["vacancies"], response_model=str)
-async def get_parse_params(name:str, salary:int, db:db_dependency):
-    all_found_vacancies = get_vacancies(name, salary)
+async def get_parse_params(name:str, salary:int, experience:str, db:db_dependency):
+    all_found_vacancies = get_vacancies(name, salary, experience)
     for vac in all_found_vacancies:
         dict_example=['name', 'salary', 'experience', 'city', 'link']
         vac = dict(zip(dict_example, vac))
