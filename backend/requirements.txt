@@ -1,5 +1,6 @@
 pydantic
 sqlalchemy
+aiosqlite
 selenium
 beautifulsoup4
 lxml

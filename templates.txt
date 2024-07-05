@@ -1,0 +1,13 @@
+class VacancyBase(BaseModel):
+    name: str
+    salary: int
+    experience: str
+    city: str
+    link: str
+
+class VacancyModel(VacancyBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+    
