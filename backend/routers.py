@@ -26,6 +26,7 @@ class VacancyModel(VacancyBase):
     class Config:
         from_attributes = True
 
+#Models for connection#
 
 def get_db():
     db = new_session()
