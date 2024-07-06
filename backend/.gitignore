@@ -110,3 +110,4 @@ venv.bak/
 #added
 *.db
 parsed_data.db
+__pycache__

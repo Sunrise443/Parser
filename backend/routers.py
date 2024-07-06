@@ -38,8 +38,8 @@ def get_db():
 
 db_dependency = Annotated[Session, Depends(get_db)]
 
-@router.post("", tags=["vacancies"], response_model=str)
-async def get_parse_params(name:str, salary:int, experience:str, db:db_dependency):
+@router.get("", tags=["vacancies"], response_model=List[VacancyModel])
+async def get_parsed_params(name:str, salary:int, experience:str, db:db_dependency):
     all_found_vacancies = get_vacancies(name, salary, experience)
     for vac in all_found_vacancies:
         dict_example=['name', 'salary', 'experience', 'city', 'link']
@@ -47,9 +47,5 @@ async def get_parse_params(name:str, salary:int, experience:str, db:db_dependenc
         db_vacancy = models.Vacancy(**vac)
         db.add(db_vacancy)
         await db.commit()
-    return "Data is loaded"
-
-@router.get("", tags=["vacancies"], response_model=List[VacancyModel])
-async def show_vacancies(db:db_dependency):
     vacancies = await db.execute(select(models.Vacancy))
     return vacancies.scalars().all()

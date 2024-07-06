@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-import time
 
 def get_vacancies(vac_name, vac_salary, vac_experience):
     
@@ -25,7 +24,6 @@ def get_vacancies(vac_name, vac_salary, vac_experience):
         vacancy_link = vacancy.find(name='a', attrs={'class':'bloko-link'}).get('href')
         all_vacancies.append([vacancy_name, vac_salary, vacancy_experience, vacancy_city, vacancy_link])
 
-    time.sleep(10)
     driver.quit()
 
     return all_vacancies
