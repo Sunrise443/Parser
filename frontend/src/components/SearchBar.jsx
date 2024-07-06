@@ -1,5 +1,6 @@
 import { Button, InputNumber, Form, Input, Select } from 'antd';
 import React, {useState} from 'react';
+import axios from 'axios'
 const {Option} = Select
 
 
@@ -16,9 +17,6 @@ function SearchBar() {
   }
   
   const searchOnClick = (vac_name, vac_salary, vac_experience) => {
-    setVName(vac_name)
-    setVSalary(vac_salary)
-    setVExperience(vac_experience)
     fetchVacancies(vac_name, vac_salary, vac_experience)
   }
 
@@ -53,7 +51,7 @@ function SearchBar() {
             },
           ]}
         >
-          <Input placeholder = 'Название вакансии' value={vName} onChange={(e) => searchOnClick(e.target.value)}/>
+          <Input placeholder = 'Название вакансии' value={vName} onChange={(e) => setVName(e.target.value)}/>
         </Form.Item>
 
         <Form.Item
@@ -66,6 +64,7 @@ function SearchBar() {
               required: false,
             },
           ]}
+          onChange={(e) => setVExperience(e.target.value)}
         >
           <Select
             placeholder="Опыт работы"
@@ -89,6 +88,7 @@ function SearchBar() {
               width: '100%',
             }}
             value={vSalary}
+            onChange={(e) => setVSalary(e.target.value)}
           />
         </Form.Item>
 
@@ -98,7 +98,7 @@ function SearchBar() {
             span: 16,
           }}
         >
-          <Button type="primary" htmlType="submit" onClick={searchOnClick}>
+          <Button type="primary" htmlType="submit" onClick={searchOnClick(vName, vSalary, vExperience)}>
             Найти
           </Button>
         </Form.Item>
