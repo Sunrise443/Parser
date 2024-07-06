@@ -109,3 +109,4 @@ venv.bak/
 
 #added
 *.db
+parsed_data.db
