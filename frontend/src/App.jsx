@@ -9,18 +9,8 @@ import FilterCard from './components/FilterCard.jsx';
 
 
 const App = () => {
-  const [allVacancies, setAllVacancies] = useState([]);
 
 
-  const fetchVacancies = (vac_name, vac_salary, vac_experience) => {
-    axios.get(`http://localhost:8000/vacancies?name=${vac_name}&salary=${vac_salary}&experience=${vac_experience}`).then(response => {
-      setAllVacancies(response.data)
-    })
-  }
-
-  useEffect(() => {
-    fetchVacancies('программист', '20', 'noExperience')
-  }, [])
 
   return (
     <div className='bg-[beige]'>
