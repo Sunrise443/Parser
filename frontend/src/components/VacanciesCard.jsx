@@ -1,7 +1,14 @@
 import { Card, Button } from "antd";
+import React, { useContext, useMemo } from "react";
 
-function VacanciesCard() {
+import { VacanciesContext } from "../App";
 
+
+const VacanciesCard = () => {
+
+  const { allVacancies } = useContext(VacanciesContext)
+  
+  console.log(allVacancies)
     return (
       <div>
         <Card title="Найденные вакансии" style={{maxWidth: 1000}}>

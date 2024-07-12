@@ -1,19 +1,30 @@
-import axios from 'axios'
 import {Layout, Menu} from 'antd';
 const { Header, Content, Footer, Sider} = Layout;
-import React, {useEffect, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 
 import SearchBar from "./components/SearchBar.jsx"
 import VacanciesCard from "./components/VacanciesCard.jsx"
 import FilterCard from './components/FilterCard.jsx';
 
 
-const App = () => {
+export const VacanciesContext = createContext();
 
 
+const VacanciesContextProvider = ({ children }) => {
+  const [allVacancies, setAllVacancies] = useState([])
 
   return (
-    <div className='bg-[beige]'>
+    <VacanciesContext.Provider value={{ allVacancies, setAllVacancies }}>
+      {children}
+    </VacanciesContext.Provider>
+  );
+};
+
+
+const App = () => {
+
+  return (
+    <div className='App bg-[beige]'>
       <Header
         style={{
           display: 'flex',
@@ -49,9 +60,11 @@ const App = () => {
               padding: 24,
             }}
           >        
-             
-            <SearchBar/>
-            <VacanciesCard/>
+
+          <VacanciesContextProvider>  
+            <SearchBar />
+            <VacanciesCard />
+          </VacanciesContextProvider> 
 
           </div>
         </Content>
