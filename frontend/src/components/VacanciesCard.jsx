@@ -7,31 +7,30 @@ import { VacanciesContext } from "../App";
 const VacanciesCard = () => {
 
   const { allVacancies } = useContext(VacanciesContext)
-  
-  console.log(allVacancies)
+    console.log(allVacancies)
     return (
       <div>
         <Card title="Найденные вакансии" style={{maxWidth: 1000}}>
           {Array.from(
               {
-                length: 50,
+                length: allVacancies.length,
               },
               (_, i) => (
               <Card
                 style={{marginTop: 16,}}
                 type="inner"
-                title="Название вакансии"
-                extra={<a href="#">Перейти к вакансии</a>}
+                title={allVacancies[i].name}
+                extra={<a href={allVacancies[i].link}>Перейти к вакансии</a>}
                 key={i}
               >
                 <div className="flex items-center gap-4">
-                    Зарплата
+                  {allVacancies[i].salary}
                 </div>
                 <div>
-                    Город
+                  {allVacancies[i].city}
                 </div>
                 <div>
-                    Опыт работы
+                  {allVacancies[i].experience}
                 </div>
             </Card>
               ),

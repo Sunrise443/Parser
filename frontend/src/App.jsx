@@ -1,6 +1,7 @@
 import {Layout, Menu} from 'antd';
 const { Header, Content, Footer, Sider} = Layout;
 import React, {createContext, useEffect, useState} from 'react';
+import axios from 'axios'
 
 import SearchBar from "./components/SearchBar.jsx"
 import VacanciesCard from "./components/VacanciesCard.jsx"
@@ -11,7 +12,7 @@ export const VacanciesContext = createContext();
 
 
 const VacanciesContextProvider = ({ children }) => {
-  const [allVacancies, setAllVacancies] = useState([])
+  const [allVacancies, setAllVacancies] = useState([{name: "Н", salary: "20", experience: "30", city: "Г", link: "j"}])
 
   return (
     <VacanciesContext.Provider value={{ allVacancies, setAllVacancies }}>
