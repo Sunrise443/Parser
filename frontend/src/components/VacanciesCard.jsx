@@ -1,17 +1,38 @@
 import { Card, Button } from "antd";
-import VacancyCard from "./VacancyCard";
+import React, { useContext, useMemo } from "react";
 
-function VacanciesCard() {
+import { VacanciesContext } from "../App";
 
+
+const VacanciesCard = () => {
+
+  const { allVacancies } = useContext(VacanciesContext)
+    console.log(allVacancies)
     return (
       <div>
         <Card title="Найденные вакансии" style={{maxWidth: 1000}}>
           {Array.from(
               {
-                length: 50,
+                length: allVacancies.length,
               },
               (_, i) => (
-                <VacancyCard key={i} type="primary"/>
+              <Card
+                style={{marginTop: 16,}}
+                type="inner"
+                title={allVacancies[i].name}
+                extra={<a href={allVacancies[i].link}>Перейти к вакансии</a>}
+                key={i}
+              >
+                <div className="flex items-center gap-4">
+                  {allVacancies[i].salary}
+                </div>
+                <div>
+                  {allVacancies[i].city}
+                </div>
+                <div>
+                  {allVacancies[i].experience}
+                </div>
+            </Card>
               ),
             )}
         </Card>

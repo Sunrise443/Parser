@@ -1,29 +1,31 @@
-import axios from 'axios'
 import {Layout, Menu} from 'antd';
 const { Header, Content, Footer, Sider} = Layout;
-import React, {useEffect, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
+import axios from 'axios'
 
 import SearchBar from "./components/SearchBar.jsx"
 import VacanciesCard from "./components/VacanciesCard.jsx"
 import FilterCard from './components/FilterCard.jsx';
 
 
-const App = () => {
-  const [allVacancies, setAllVacancies] = useState([]);
+export const VacanciesContext = createContext();
 
 
-  const fetchVacancies = (vac_name, vac_salary, vac_experience) => {
-    axios.get(`http://localhost:8000/vacancies?name=${vac_name}&salary=${vac_salary}&experience=${vac_experience}`).then(response => {
-      setAllVacancies(response.data)
-    })
-  }
-
-  useEffect(() => {
-    fetchVacancies('программист', '20', 'noExperience')
-  }, [])
+const VacanciesContextProvider = ({ children }) => {
+  const [allVacancies, setAllVacancies] = useState([{name: "Н", salary: "20", experience: "30", city: "Г", link: "j"}])
 
   return (
-    <div className='bg-[beige]'>
+    <VacanciesContext.Provider value={{ allVacancies, setAllVacancies }}>
+      {children}
+    </VacanciesContext.Provider>
+  );
+};
+
+
+const App = () => {
+
+  return (
+    <div className='App bg-[beige]'>
       <Header
         style={{
           display: 'flex',
@@ -59,9 +61,11 @@ const App = () => {
               padding: 24,
             }}
           >        
-             
-            <SearchBar/>
-            <VacanciesCard/>
+
+          <VacanciesContextProvider>  
+            <SearchBar />
+            <VacanciesCard />
+          </VacanciesContextProvider> 
 
           </div>
         </Content>
