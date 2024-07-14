@@ -1,4 +1,5 @@
-import { Card, Button, Flex, Input, Typography } from "antd";
+import React, {useState} from 'react';
+import { Card, Button, Input, Typography } from "antd";
 const { Title } = Typography;
 
 function FilterCard() {

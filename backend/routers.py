@@ -5,7 +5,7 @@ from requests import Session
 from sqlalchemy import select
 
 from parsing import get_vacancies
-from database import new_session
+from database import create_tables, new_session, delete_tables
 import models as models
 
 router = APIRouter(prefix='/vacancies')
@@ -48,4 +48,6 @@ async def get_parsed_params(name:str, salary:int, experience:str, db:db_dependen
         db.add(db_vacancy)
         await db.commit()
     vacancies = await db.execute(select(models.Vacancy))
+    await delete_tables()
+    await create_tables()
     return vacancies.scalars().all()

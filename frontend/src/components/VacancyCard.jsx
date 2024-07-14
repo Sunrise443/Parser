@@ -1,28 +1,34 @@
 import { Card } from "antd";
+import React from "react";
 
-function VacancyCard() {
 
-    return (
-      <div>
-        <Card
-            style={{marginTop: 16,}}
-            type="inner"
-            title="Название вакансии"
-            extra={<a href="#">Перейти к вакансии</a>}
-        >
-            <div className="flex items-center gap-4">
-                Зарплата
-            </div>
-            <div>
-                Город
-            </div>
-            <div>
-                Опыт работы
-            </div>
-        </Card>
-      </div>
-    )
-  }
+const VacancyCard = ({allVacancies}) => {
 
-export default VacancyCard
-  
+  console.log(allVacancies)
+  return (
+    <>
+        {allVacancies.map((vacancy) => {
+        return(
+            <Card
+                key={vacancy.id}
+                style={{marginTop: 16,}}
+                type="inner"
+                title={vacancy.name}
+                extra={<a href={vacancy.link} target="_blank">Перейти к вакансии</a>}
+                >
+                <div className="flex items-center gap-4">
+                    {vacancy.salary}
+                </div>
+                <div>
+                    {vacancy.city}
+                </div>
+                <div>
+                    {vacancy.experience}
+                </div>
+            </Card>
+        )})}
+    </>
+  )
+}
+
+export default VacancyCard;

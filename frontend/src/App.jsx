@@ -1,7 +1,6 @@
-import axios from 'axios'
-import {Layout, Menu} from 'antd';
+import {Layout, Menu, Spin} from 'antd';
 const { Header, Content, Footer, Sider} = Layout;
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import SearchBar from "./components/SearchBar.jsx"
 import VacanciesCard from "./components/VacanciesCard.jsx"
@@ -9,21 +8,11 @@ import FilterCard from './components/FilterCard.jsx';
 
 
 const App = () => {
-  const [allVacancies, setAllVacancies] = useState([]);
 
-
-  const fetchVacancies = (vac_name, vac_salary, vac_experience) => {
-    axios.get(`http://localhost:8000/vacancies?name=${vac_name}&salary=${vac_salary}&experience=${vac_experience}`).then(response => {
-      setAllVacancies(response.data)
-    })
-  }
-
-  useEffect(() => {
-    fetchVacancies('программист', '20', 'noExperience')
-  }, [])
+  const [allVacancies, setAllVacancies] = useState([{name:'Введите данные'}])
 
   return (
-    <div className='bg-[beige]'>
+    <div className='App bg-[beige]'>
       <Header
         style={{
           display: 'flex',
@@ -51,6 +40,7 @@ const App = () => {
         <Content
           style={{
             padding: '0 48px',
+            minHeight: '100vh',
           }}
         >
           <div
@@ -59,9 +49,9 @@ const App = () => {
               padding: 24,
             }}
           >        
-             
-            <SearchBar/>
-            <VacanciesCard/>
+
+            <SearchBar setAllVacancies={setAllVacancies}/>
+            {allVacancies ? <VacanciesCard allVacancies={allVacancies}/> : <Spin size='large'/>}
 
           </div>
         </Content>

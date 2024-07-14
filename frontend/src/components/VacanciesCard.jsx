@@ -1,23 +1,16 @@
-import { Card, Button } from "antd";
+import { Card } from "antd";
+import React from "react";
+
 import VacancyCard from "./VacancyCard";
 
-function VacanciesCard() {
 
-    return (
-      <div>
-        <Card title="Найденные вакансии" style={{maxWidth: 1000}}>
-          {Array.from(
-              {
-                length: 50,
-              },
-              (_, i) => (
-                <VacancyCard key={i} type="primary"/>
-              ),
-            )}
-        </Card>
-      </div>
-    )
-  }
+const VacanciesCard = ({allVacancies}) => {
+  return (
+    <Card title="Найденные вакансии" style={{maxWidth: 1000}} className="results-list">
+      <VacancyCard allVacancies={allVacancies}/>
+    </Card>
+  )
+}
 
 export default VacanciesCard
   
