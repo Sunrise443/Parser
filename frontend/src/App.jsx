@@ -1,28 +1,15 @@
-import {Layout, Menu} from 'antd';
+import {Layout, Menu, Spin} from 'antd';
 const { Header, Content, Footer, Sider} = Layout;
-import React, {createContext, useEffect, useState} from 'react';
-import axios from 'axios'
+import React, {useState} from 'react';
 
 import SearchBar from "./components/SearchBar.jsx"
 import VacanciesCard from "./components/VacanciesCard.jsx"
 import FilterCard from './components/FilterCard.jsx';
 
 
-export const VacanciesContext = createContext();
-
-
-const VacanciesContextProvider = ({ children }) => {
-  const [allVacancies, setAllVacancies] = useState([{name: "Н", salary: "20", experience: "30", city: "Г", link: "j"}])
-
-  return (
-    <VacanciesContext.Provider value={{ allVacancies, setAllVacancies }}>
-      {children}
-    </VacanciesContext.Provider>
-  );
-};
-
-
 const App = () => {
+
+  const [allVacancies, setAllVacancies] = useState([{name:'Введите данные'}])
 
   return (
     <div className='App bg-[beige]'>
@@ -53,6 +40,7 @@ const App = () => {
         <Content
           style={{
             padding: '0 48px',
+            minHeight: '100vh',
           }}
         >
           <div
@@ -62,10 +50,8 @@ const App = () => {
             }}
           >        
 
-          <VacanciesContextProvider>  
-            <SearchBar />
-            <VacanciesCard />
-          </VacanciesContextProvider> 
+            <SearchBar setAllVacancies={setAllVacancies}/>
+            {allVacancies ? <VacanciesCard allVacancies={allVacancies}/> : <Spin size='large'/>}
 
           </div>
         </Content>

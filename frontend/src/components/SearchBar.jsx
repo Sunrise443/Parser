@@ -1,27 +1,20 @@
 import { Button, Form, Input, Select } from 'antd';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
-import { VacanciesContext } from '../App';
 
-const SearchBar = () => {
-
-  const {setAllVacancies} = useContext(VacanciesContext);
+const SearchBar = ({setAllVacancies}) => {
 
   const [vName, setVName] = useState('')
   const [vSalary, setVSalary] = useState(0)
   const [vExperience, setVExperience] = useState('')
-
-  useEffect(() => {
-    axios.get(`http://localhost:8000/vacancies?name=стажер&salary=20000&experience=noExperience`).then(response => {
-      setAllVacancies(response.data)})
-  }, []);
   
   function searchOnClick() {
+    setAllVacancies(null)
     console.log(vName, vSalary, vExperience)
     axios.get(`http://localhost:8000/vacancies?name=${vName}&salary=${vSalary}&experience=${vExperience}`).then(response => {
       setAllVacancies(response.data)
-    });
+    }, []);
   };
 
 
