@@ -34,7 +34,7 @@ const App = () => {
 
       <div className='flex'>
         <Sider>
-          <FilterCard/>
+          <FilterCard allVacancies={allVacancies} setAllVacancies={setAllVacancies}/>
         </Sider>
 
         <Content
