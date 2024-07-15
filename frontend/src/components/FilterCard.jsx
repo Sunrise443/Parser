@@ -1,27 +1,44 @@
 import React, {useState} from 'react';
-import { Card, Button, Input, Typography } from "antd";
+import { Card, Button, Input, Form, Typography } from "antd";
 const { Title } = Typography;
 
-function FilterCard() {
+const FilterCard = ({allVacancies, setAllVacancies}) => {
+  
+  const [city, setCity] = useState('')
 
-    return (
-      <div>
-        <Card
-            title="Фильтр"
-            bordered={false}
-            style={{
-            width: 200,
-            }}
-        >
-            <Title level={5}>Город</Title>
-            <Input/>
-            <Button
-              style={{marginTop:20,}}>
-              Показать</Button>
+  const filterOnClick = () => {
+    console.log(allVacancies)
+    setAllVacancies(Object.values(allVacancies).filter((vacancy) => vacancy.city === city))
+  };
 
-        </Card>
-      </div>
-    )
+  return (
+    <Card
+        title="Фильтр"
+        bordered={false}
+        style={{
+        width: 200,
+        }}
+    >
+      <Title level={5}>Город</Title>
+      <Form
+        name='control-hooks'
+        initialValues={{remembered:true}}
+        autoComplete='off'
+        onFinish={filterOnClick}
+      >
+        <Form.Item name='cityInput'>
+          <Input type='string' value={city} onChange={(e) => setCity(e.target.value)}/>
+        </Form.Item>
+
+        <Form.Item>
+          <Button style={{marginTop:20,}} type='primary' htmlType='submit'>
+            Показать
+          </Button>
+        </Form.Item>
+        </Form>
+        
+    </Card>
+  )
   }
 
 export default FilterCard
