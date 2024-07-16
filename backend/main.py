@@ -21,7 +21,7 @@ app = FastAPI(lifespan=lifespan)
 app.include_router(router)
 
 
-origins = ["*"]
+origins = ["*",]
 
 app.add_middleware(
     CORSMiddleware,
