@@ -2,16 +2,12 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY pacage*.json ./
+COPY packag*.json .
 
-COPY ./src ./src
-COPY ./public ./public
+RUN npm install
 
-RUN npm install \
-    && npm install -g serve \
-    && npm run build \
-    && rm -fr node_modules
+COPY . .
 
 EXPOSE 5173
 
-CMD ["serve", "-s", "build"]
+CMD [ "npm", "run", "dev"  ]

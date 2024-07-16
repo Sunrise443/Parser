@@ -1,11 +1,11 @@
-version: latest
+version: "3.8"
 
 services:
   backend:
     build: ./backend
     volumes:
       - './backend:/app'
-      - './backend/parsed_data:/app/parsed_data'
+      - './backend/parsed_data:/app/database'
     ports:
       - '8000:8000'
 
@@ -13,17 +13,6 @@ services:
     build: 
       context: ./frontend
       dockerfile: Dockerfile
-    volumes:
-      - './frontend:/app'
-    command: npm run dev
     ports:
-      - '3000:3000'
-
-  nginx:
-    build: 
-      context: ./nginx
-      dockerfile: Dockerfile
-    volumes:
-      - './frontend/build:/usr/share/nginx/html'
-    ports:
-      - '80:80'
+      - '5173:5173'
+      
